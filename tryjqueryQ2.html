@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Sheet</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+       .navbar1{ 
+    background-color: #223f04; 
+    overflow: hidden;
+}
+
+
+.navbar1 a {
+    float: left; 
+    display: block; 
+    color: white; 
+    text-align: center; 
+    padding: 14px 16px; 
+    text-decoration: none; 
+}
+
+
+.navbar1 a:hover {
+    background-color: #d1ec49;
+    color: black;
+
+       }
+    </style>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;"></body>>
+    <header style="background-color: #333; color: white; text-align: center; padding: 10px;">
+        <nav class="navbar1">
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container" style="background-color: white; padding: 20px; margin: 20px auto; max-width: 600px; border-radius: 5px; box-shadow: 0 0 10px rgba(110, 135, 233, 0.1);">
+        <h1 style="text-align: center;">Mark Sheet</h1>
+        <form id="markSheetForm">
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" class="autocomplete" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="subjectName">Subject Name:</label>
+                <input type="text" id="subjectName" class="autocomplete" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="marks">Marks:</label>
+                <input type="number" id="marks" min="0" max="100" required>
+            </div>
+            <button type="button" id="addMark" style="background-color: #333; color: white; border: none; padding: 10px 20px; border-radius: 3px; cursor: pointer;">Add Mark</button>
+        </form>
+
+        <div id="markSheet">
+        </div>
+        <div id="result">
+          
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+       
+        $(document).ready(function() {
+           
+            var students = ["Student1", "Student2", "Student3"]; 
+            var subjects = ["Subject1", "Subject2", "Subject3"];  
+
+            $(".autocomplete").autocomplete({
+                source: function(request, response) {
+                    var term = request.term.toLowerCase();
+                    var availableNames = this.element.attr("id") === "studentName" ? students : subjects;
+                    var filteredNames = availableNames.filter(function(name) {
+                        return name.toLowerCase().indexOf(term) !== -1;
+                    });
+                    response(filteredNames);
+                },
+                minLength: 1
+            });
+
+            
+            var marksData = [];
+
+            $("#addMark").click(function() {
+                var studentName = $("#studentName").val();
+                var subjectName = $("#subjectName").val();
+                var marks = parseInt($("#marks").val());
+
+                if (!studentName || !subjectName || isNaN(marks)) {
+                    alert("Please enter valid data.");
+                    return;
+                }
+
+                marksData.push({ student: studentName, subject: subjectName, marks: marks });
+                updateMarkSheet();
+                calculateTotalPercentageAndGrade();
+            });
+
+            function updateMarkSheet() {
+                var markSheetHtml = "<table><tr><th>Student Name</th><th>Subject Name</th><th>Marks</th></tr>";
+                marksData.forEach(function(data) {
+                    markSheetHtml += "<tr><td>" + data.student + "</td><td>" + data.subject + "</td><td>" + data.marks + "</td></tr>";
+                });
+                markSheetHtml += "</table>";
+                $("#markSheet").html(markSheetHtml);
+            }
+
+            function calculateTotalPercentageAndGrade() {
+                var totalMarks = 0;
+                var totalSubjects = 0;
+
+                marksData.forEach(function(data) {
+                    totalMarks += data.marks;
+                    totalSubjects++;
+                });
+
+                var percentage = (totalMarks / (totalSubjects * 100)) * 100;
+                var grade = calculateGrade(percentage);
+
+                $("#result").html("Total Marks: " + totalMarks + "<br>Percentage: " + percentage.toFixed(2) + "%<br>Grade: " + grade);
+            }
+
+            function calculateGrade(percentage) {
+                if (percentage >= 90) {
+                    return "A+";
+                } else if (percentage >= 80) {
+                    return "A";
+                } else if (percentage >= 70) {
+                    return "B";
+                } else if (percentage >= 60) {
+                    return "C";
+                } else if (percentage >= 50) {
+                    return "D";
+                } else {
+                    return "F";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

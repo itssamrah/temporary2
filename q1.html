@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!-- Include jQuery UI -->
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .boxes{
+            width: 100%;
+            height: 90vh;
+            border: 1px solid #900;
+            margin-top: 2vmin;
+            display: flex;
+            align-items: center;
+        }
+        .col{
+            height: 100%;
+            width: 20%;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .box{
+            height: 20%;
+            width: 50%;
+            background-color: #000;
+            position: relative; /* Add this line */
+        }
+    </style>
+</head>
+<body>  
+    <button>Click</button>
+    <div class="boxes">
+        <div class="col">
+            <div class="box" id="box1"></div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+        </div>
+        <div class="col">
+            <div class="box" id="box5"></div>
+        </div>
+        <div class="col">
+            <div class="box" id="box6"></div>
+            <div class="box" id="box7"></div>
+        </div>
+        <div class="col">
+            <div class="box" id="box8"></div>
+            <div class="box" id="box9"></div>
+            <div class="box" id="box10"></div>
+        </div>
+        <div class="col">
+            <div class="box" id="box11"></div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('button').click(function(){
+                $('#box1').animate({
+                    left: '20px', 
+                    backgroundColor: "red",
+                    borderRadius: '5%'
+                })
+
+                $('#box1').animate({
+                    left: '0px', 
+                    top: '20px',
+                    backgroundColor: "green",
+                    borderRadius: '5%'
+                })
+
+                $('#box1').animate({
+                    left: '-40px', 
+                    top: '0px',
+                    backgroundColor: "yellow",
+                    borderRadius: '15%'
+                })
+
+                $('#box1').animate({
+                    left: '0px', 
+                    top: '0px',
+                    backgroundColor: "#000",
+                    borderRadius: '0'
+                })
+                
+                $('#box2').animate({
+                    backgroundColor: 'grey',
+                    top: "20px",
+                })
+
+                $('#box2').animate({
+                    backgroundColor: 'green',
+                    top: "0px",
+                    left: '-20px',
+                    borderRadius: "16px"
+                })
+
+                $('#box2').animate({
+                    backgroundColor: 'green',
+                    top: "20px",
+                    left: '-40px',
+                    borderRadius: "16px"
+                })
+                
+                $('#box2').animate({
+                    backgroundColor: '#000',
+                    top: "0px",
+                    left: '0px',
+                    borderRadius: "0"
+                })
+
+                $('#box3').animate({
+                    backgroundColor: '#000',
+                    top: "0px",
+                    left: '40px',
+                    borderRadius: "20px"
+                })
+
+                $('#box3').animate({
+                    backgroundColor: '#fff',
+                    top: "0px",
+                    left: '-40px',
+                    backgroundColor: 'red',
+                    borderRadius: "20px"
+                })
+
+                $('#box3').animate({
+                    backgroundColor: '#fff',
+                    top: "0px",
+                    left: '-20px',
+                    borderRadius: "20px",
+                })
+                
+                $('#box3').animate({
+                    backgroundColor: '#000',
+                    top: "0px",
+                    left: '0px',
+                    borderRadius: "0px",
+                })
+                
+                $('#box4').animate({
+                    left: "60px",
+                    borderRadius: "20px",
+                    backgroundColor: 'yellow',
+                })
+
+                $('#box4').animate({
+                    backgroundColor: '#fff',
+                    left: "0px",
+                    borderRadius: "20px"
+                })
+
+                $('#box4').animate({
+                    backgroundColor: '#000',
+                    left: "-60px",
+                    borderRadius: "20px"
+                })
+                
+                $('#box4').animate({
+                    backgroundColor: '#000',
+                    left: "0px",
+                    borderRadius: "0"
+                })
+
+                $('#box5').animate({
+                    top: "38%",
+                })
+
+                $('#box5').animate({
+                    top: "-38%",
+                })
+
+                $('#box5').animate({
+                    top: "0%",
+                    backgroundColor: '#fff',
+                    borderRadius: "16px",
+                })
+
+                $('#box5').animate({
+                    top: "0%",
+                    backgroundColor: '#0000',
+                    borderRadius: "0px",
+                })
+
+                $('#box6').animate({
+                    top: "10%",
+                    backgroundColor: 'yellow'
+                })
+
+                $('#box6').animate({
+                    top: "0%",
+                    left: "40px",
+                    backgroundColor: 'green'
+                })
+
+                $('#box6').animate({
+                    top: "0%",
+                    left: "0px",
+                    backgroundColor: 'green',
+                    borderRadius: "20px"
+                })
+
+                $('#box6').animate({
+                    top: "0%",
+                    left: "0px",
+                    backgroundColor: '#000',
+                    borderRadius: "0"
+                })
+                
+                $('#box7').animate({
+                    top: "-10%",
+                    backgroundColor: 'yellow'
+                })
+                
+                $('#box7').animate({
+                    top: "0%",
+                    left: "40px",
+                    backgroundColor: 'green'
+                })
+                
+                $('#box7').animate({
+                    top: "0%",
+                    left: "0px",
+                    backgroundColor: 'green',
+                    borderRadius: "20px"
+                })
+
+                $('#box7').animate({
+                    top: "0%",
+                    left: "0px",
+                    backgroundColor: '#000',
+                    borderRadius: "0"
+                })
+
+                $('#box8').animate({
+                    top: "0%",
+                    left: "40px",
+                    backgroundColor: 'yellow',
+                })
+
+                $('#box8').animate({
+                    top: "0%",
+                    left: "-40px",
+                    backgroundColor: 'green',
+                })
+
+                
+                $('#box8').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: '#fff',
+                })
+
+                $('#box8').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: '#000',
+                })
+
+                $('#box9').animate({
+                    top: "0%",
+                    backgroundColor: 'yellow',
+                })
+
+                $('#box9').animate({
+                    top: "0%",
+                    backgroundColor: 'green',
+                })
+
+                $('#box9').animate({
+                    top: "0%",
+                    backgroundColor: '#fff',
+                })
+
+                $('#box9').animate({
+                    top: "0%",
+                    backgroundColor: '#000',
+                })
+
+                
+                $('#box10').animate({
+                    top: "0%",
+                    left: "-40px",
+                    backgroundColor: '#000',
+                    backgroundColor: 'yellow',
+                })
+
+                $('#box10').animate({
+                    top: "0%",
+                    left: '40px',
+                    backgroundColor: 'green',
+                })
+
+                $('#box10').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: '#fff',
+                })
+
+                $('#box10').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: '#000',
+                })
+
+                $('#box11').animate({
+                    top: "-39%",
+                    left: '0px',
+                    backgroundColor: 'red',
+                })
+
+                $('#box11').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: 'green',
+                })
+
+                $('#box11').animate({
+                    top: "39%",
+                    left: '0px',
+                    backgroundColor: 'yellow',
+                })
+                
+                $('#box11').animate({
+                    top: "0%",
+                    left: '0px',
+                    backgroundColor: '#000',
+                })
+
+
+
+            })
+        })
+    </script>
+</body>
+</html>

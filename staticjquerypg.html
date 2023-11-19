@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>jquery selectors and highlight</h1>
+    <p class="highlight">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam incidunt minus numquam reprehenderit laborum cupiditate sapiente accusamus aut quibusdam, eaque deserunt, facere, similique voluptate? Autem similique saepe iure alias magnam doloremque repellendus ab, aliquid minima quam. Nisi quia possimus error.</p>
+    <p id="one">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, voluptatibus.</p>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <ul>
+        <li>item</li>
+        <li class="highlight">item 2</li>
+        <li>item3</li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+     $(document).ready(function () {
+        
+        
+            $('p').css('font-weight', 'light');
+            
+            $('#one').css('color', 'red'); 
+
+            $('.highlight').css('border', '1px solid blue');
+
+            
+            $('ul li').hover(
+                function () {
+                    $(this).css('background-color', 'cyan'); 
+                },
+
+                function () {
+                    $(this).css('background-color', ''); 
+                }
+            );
+        });
+    </script>
+    
+</body>
+</html>

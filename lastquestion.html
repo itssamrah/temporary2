@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+      integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+      integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <title>jQuery UI Accordion - Default functionality</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style-type: none;
+        color: #000;
+      }
+      body {
+        scroll-behavior: smooth;
+      }
+      nav {
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 1vmax;
+        border-bottom: 1px solid #fff;
+      }
+      #logo {
+        color: #917474;
+        font-size: 2vmax;
+      }
+      nav > ul {
+        display: flex;
+        gap: 2vmax;
+      }
+      nav > ul > li > a {
+        color: #056e72;
+        font-size: 1.2vmax;
+        height: 5vmin;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+        color: #000;
+      }
+      nav > ul > li > a:hover {
+        border-bottom: 1px solid #000;
+      }
+      .search {
+        background-color: #c57a8cc4;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding: 0.5vmax;
+        width: 15vmax;
+        border: 1px solid #000;
+      }
+      .search > input {
+        width: 95%;
+        border: none;
+        outline: none;
+      }
+      main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      section {
+        width: 100%;
+        height: 80vh;
+        /* border: 1px solid #eee; */
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 5vmax;
+        margin-bottom: 10vh;
+        justify-content: space-around;
+      }
+      #sec1 {
+        justify-content: space-around;
+        height: 40vh;
+        margin-top: 10vh;
+      }
+      .wid {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .ui-menu {
+        width: 150px;
+      }
+      .black {
+        color: #000;
+      }
+      #tabs {
+        margin-top: 5vh;
+      }
+      .ui-controlgroup-vertical {
+        width: 150px;
+      }
+      .ui-controlgroup.ui-controlgroup-vertical > button.ui-button,
+      .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-label {
+        text-align: center;
+      }
+      #car-type-button {
+        width: 120px;
+      }
+      .ui-controlgroup-horizontal .ui-spinner-input {
+        width: 20px;
+      }
+      #draggable {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+      }
+      #sortable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+      }
+      #sortable li {
+        margin: 0 3px 3px 3px;
+        padding: 0.4em;
+        padding-left: 1.5em;
+        font-size: 1.4em;
+        height: 18px;
+      }
+      #sortable li span {
+        position: absolute;
+        margin-left: -1.3em;
+      }
+
+      #draggable {
+        width: 100px;
+        height: 100px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px 10px 10px 0;
+      }
+      #droppable {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+        float: left;
+        margin: 10px;
+      }
+
+      #resizable {
+        width: 150px;
+        height: 150px;
+        padding: 0.5em;
+      }
+      #resizable h3 {
+        text-align: center;
+        margin: 0;
+      }
+
+      .graph {
+        float: left;
+        margin-left: 10px;
+      }
+
+      .toggler {
+        width: 500px;
+        height: 200px;
+        position: relative;
+      }
+      #button {
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background-color: aquamarine;
+      }
+      #effect {
+        width: 240px;
+        height: 170px;
+        padding: 0.4em;
+        position: relative;
+      }
+      #effect h3 {
+        margin: 0;
+        padding: 0.4em;
+        text-align: center;
+      }
+      .ui-effects-transfer {
+        border: 2px dotted gray;
+      }
+
+      .toggler {
+        width: 500px;
+        height: 200px;
+        position: relative;
+      }
+      #button {
+        padding: 0.5em 1em;
+        text-decoration: none;
+      }
+      #effect {
+        position: relative;
+      }
+      .newClass {
+        width: 240px;
+        padding: 1em;
+        letter-spacing: 0;
+        margin: 0;
+      }
+      .anotherNewClass {
+        text-indent: 40px;
+        letter-spacing: 0.2em;
+        width: 410px;
+        height: 100px;
+        padding: 30px;
+        margin: 10px;
+        font-size: 1.1em;
+      }
+
+      .toggler {
+        width: 500px;
+        height: 200px;
+      }
+      #button {
+        padding: 0.5em 1em;
+        text-decoration: none;
+      }
+      #effect {
+        position: relative;
+        width: 240px;
+        height: 170px;
+        padding: 0.4em;
+      }
+      #effect h3 {
+        margin: 0;
+        padding: 0.4em;
+        text-align: center;
+      }
+      #feedback {
+        font-size: 1.4em;
+      }
+      #selectable .ui-selecting {
+        background: #feca40;
+      }
+      #selectable .ui-selected {
+        background: #f39814;
+        color: white;
+      }
+      #selectable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+      }
+      #selectable li {
+        margin: 3px;
+        padding: 0.4em;
+        font-size: 1.4em;
+        height: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="logo">Logo</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+      <div class="search">
+        <input type="search" name="" id="auto" placeholder="Search" />
+        <i class="fa-solid fa-magnifying-glass" style="color: #000000"></i>
+      </div>
+    </nav>
+    <main>
+      <section id="sec1">
+        <div class="widget" class="wid">
+          <h1 style="margin-bottom: 2vmin">Choose Your Location</h1>
+
+          <fieldset style="margin-bottom: 2vmin">
+            <legend>Select a Location:</legend>
+            <label for="radio-1">New York</label>
+            <input type="radio" name="radio-1" id="radio-1" />
+            <label for="radio-2">Paris</label>
+            <input type="radio" name="radio-1" id="radio-2" />
+            <label for="radio-3">London</label>
+            <input type="radio" name="radio-1" id="radio-3" />
+          </fieldset>
+
+          <fieldset style="margin-bottom: 2vmin">
+            <legend>Ratings:</legend>
+            <label for="checkbox-1">2 Star</label>
+            <input type="checkbox" name="checkbox-1" id="checkbox-1" />
+            <label for="checkbox-2">3 Star</label>
+            <input type="checkbox" name="checkbox-2" id="checkbox-2" />
+            <label for="checkbox-3">4 Star</label>
+            <input type="checkbox" name="checkbox-3" id="checkbox-3" />
+            <label for="checkbox-4">5 Star</label>
+            <input type="checkbox" name="checkbox-4" id="checkbox-4" />
+          </fieldset>
+
+          <fieldset style="margin-bottom: 2vmin">
+            <legend>Service Type:</legend>
+            <label for="checkbox-nested-1"
+              >2 Double
+              <input
+                type="checkbox"
+                name="checkbox-nested-1"
+                id="checkbox-nested-1"
+              />
+            </label>
+            <label for="checkbox-nested-2"
+              >2 Queen
+              <input
+                type="checkbox"
+                name="checkbox-nested-2"
+                id="checkbox-nested-2"
+              />
+            </label>
+            <label for="checkbox-nested-3"
+              >1 Queen
+              <input
+                type="checkbox"
+                name="checkbox-nested-3"
+                id="checkbox-nested-3"
+              />
+            </label>
+            <label for="checkbox-nested-4"
+              >1 King
+              <input
+                type="checkbox"
+                name="checkbox-nested-4"
+                id="checkbox-nested-4"
+              />
+            </label>
+          </fieldset>
+        </div>
+
+        <p>
+          <label for="spinner">Select a value:</label>
+          <input id="spinner" name="value" />
+        </p>
+
+        <p>
+          <button id="disable">Toggle disable/enable</button>
+          <button id="destroy">Toggle widget</button>
+        </p>
+
+        <p>
+          <button id="getvalue">Get value</button>
+          <button id="setvalue">Set value to 5</button>
+        </p>
+      </section>
+      <section>
+        <div id="dialog" title="Basic dialog">
+          <p class="black">
+            This is the default dialog which is useful for displaying
+            information. The dialog window can be moved, resized and closed with
+            the &apos;x&apos; icon.
+          </p>
+        </div>
+        <ul id="menu">
+          <li class="ui-state-disabled black"><div>Toys (n/a)</div></li>
+          <li><div class="black">Books</div></li>
+          <li><div class="black">Clothing</div></li>
+          <li>
+            <div class="black">Electronics</div>
+            <ul>
+              <li class="ui-state-disabled">
+                <div class="black">Home Entertainment</div>
+              </li>
+              <li><div class="black">Car Hifi</div></li>
+              <li><div class="black">Utilities</div></li>
+            </ul>
+          </li>
+          <li><div class="black">Movies</div></li>
+          <li>
+            <div class="black">Music</div>
+            <ul>
+              <li>
+                <div class="black">Rock</div>
+                <ul>
+                  <li><div class="black">Alternative</div></li>
+                  <li><div class="black">Classic</div></li>
+                </ul>
+              </li>
+              <li>
+                <div class="black">Jazz</div>
+                <ul>
+                  <li><div class="black">Freejazz</div></li>
+                  <li><div class="black">Big Band</div></li>
+                  <li><div class="black">Modern</div></li>
+                </ul>
+              </li>
+              <li><div class="black">Pop</div></li>
+            </ul>
+          </li>
+          <li class="ui-state-disabled">
+            <div class="black">Specials (n/a)</div>
+          </li>
+        </ul>
+
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1" class="black">Nunc tincidunt</a></li>
+            <li><a href="#tabs-2" class="black">Proin dolor</a></li>
+            <li><a href="#tabs-3" class="black">Aenean lacinia</a></li>
+          </ul>
+          <div id="tabs-1">
+            <p class="black">
+              Proin elit arcu, rutrum commodo, vehicula tempus, commodo a,
+              risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
+              Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem.
+              Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo.
+              Vivamus sed magna quis ligula eleifend adipiscing. Duis orci.
+              Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam
+              molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut
+              dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique
+              tempus lectus.
+            </p>
+          </div>
+          <div id="tabs-2">
+            <p class="black">
+              Morbi tincidunt, dui sit amet facilisis feugiat, odio metus
+              gravida ante, ut pharetra massa metus id nunc. Duis scelerisque
+              molestie turpis. 
+            </p>
+          </div>
+          <div id="tabs-3">
+            <p class="black">
+              Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti.
+              Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum
+              erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class
+              aptent taciti sociosqu ad litora torquent per conubia nostra, per
+              inceptos himenaeos. 
+            </p>
+            <p class="black">
+              Duis cursus. Maecenas ligula eros, blandit nec, pharetra at,
+              semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent
+              viverra justo vitae neque.
+            </p>
+          </div>
+        </div>
+        <div class="widget">
+          <h1>Controlgroup</h1>
+          <fieldset>
+            <legend>Rental Car</legend>
+            <div class="controlgroup">
+              <select id="car-type">
+                <option>Compact car</option>
+                <option>Midsize car</option>
+                <option>Full size car</option>
+                <option>SUV</option>
+              </select>
+              <label for="transmission-standard">Standard</label>
+              <input
+                type="radio"
+                name="transmission"
+                id="transmission-standard"
+              />
+              <label for="transmission-automatic">Automatic</label>
+              <input
+                type="radio"
+                name="transmission"
+                id="transmission-automatic"
+              />
+              <label for="insurance">Insurance</label>
+              <input type="checkbox" name="insurance" id="insurance" />
+              <label for="horizontal-spinner" class="ui-controlgroup-label"
+                ># of cars</label
+              >
+              <input id="horizontal-spinner" class="ui-spinner-input" />
+              <button>Book Now!</button>
+            </div>
+          </fieldset>
+          <br />
+          <fieldset>
+            <legend>Rental Car</legend>
+            <div class="controlgroup-vertical">
+              <select>
+                <option class="black">Compact car</option>
+                <option class="black">Midsize car</option>
+                <option class="black">Full size car</option>
+                <option class="black">SUV</option>
+        
+              </select>
+              <label class="black" for="transmission-standard-v"
+                >Standard</label
+              >
+              <input
+                class="black"
+                type="radio"
+                name="transmission-v"
+                id="transmission-standard-v"
+              />
+              <label class="black" for="transmission-automatic-v"
+                >Automatic</label
+              >
+              <input
+                class="black"
+                type="radio"
+                name="transmission-v"
+                id="transmission-automatic-v"
+              />
+              <label class="black" for="insurance-v">Insurance</label>
+              <input
+                class="black"
+                type="checkbox"
+                name="insurance"
+                id="insurance-v"
+              />
+              <label
+                class="black"
+                for="vertical-spinner"
+                class="ui-controlgroup-label"
+                ># of cars</label
+              >
+              <input id="vertical-spinner" class="ui-spinner-input" />
+              <button class="black" id="book">Book Now!</button>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section>
+        <div id="accordion">
+          <h3>Section 1</h3>
+          <div>
+            <p class="black">
+              Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam.
+              Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
+              condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam
+              mi. 
+            </p>
+          </div>
+          <h3>Section 2</h3>
+          <div>
+            <p class="black">
+              Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit
+              amet purus. 
+            </p>
+          </div>
+          <h3>Section 3</h3>
+          <div>
+            <p class="black">
+              Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque
+              lobortis. Phasellus pellentesque purus in massa. Aenean in pede.
+              Phasellus ac libero ac tellus pellentesque semper.
+            </p>
+            <ul>
+              <li class="black">List item one</li>
+              <li class="black">List item two</li>
+              <li class="black">List item three</li>
+            </ul>
+          </div>
+          <h3>Section 4</h3>
+          <div>
+            <p class="black">
+              Cras dictum. Pellentesque habitant morbi tristique senectus et
+              netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum
+              primis in.
+            </p>
+            <p class="black">
+              Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat
+              lectus. Class aptent taciti sociosqu ad litora torquent per
+              conubia nostra, per inceptos himenaeos.
+            </p>
+          </div>
+        </div>
+
+        <p style="margin-top: 10vh">
+          Pick a Date: <input type="text" id="datepicker" />
+        </p>
+
+        <div id="progressbar" style="width: 200px; margin-top: 5vh"></div>
+
+        <div id="draggable" class="ui-widget-content">
+          <p class="black">Drag me around</p>
+        </div>
+      </section>
+
+      <section>
+        <ul id="sortable">
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6
+          </li>
+          <li class="ui-state-default">
+            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7
+          </li>
+        </ul>
+
+        <div id="draggable" class="ui-widget-content">
+          <p class="black">Drag me to my target</p>
+        </div>
+
+        <div id="droppable" class="ui-widget-header">
+          <p class="black">Drop here</p>
+        </div>
+
+        <div id="resizable" class="ui-widget-content">
+          <h3 class="ui-widget-header">Resizable</h3>
+        </div>
+      </section>
+
+      <section>
+        <div id="graphs"></div>
+
+        <div class="toggler">
+          <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all black">Effect</h3>
+            <p class="black">
+              Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed
+              pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit
+              vitae, mi.
+            </p>
+          </div>
+        </div>
+
+        <select name="effects" id="effectTypes">
+          <option class="black" value="blind">Blind</option>
+          <option class="black" value="bounce">Bounce</option>
+          <option class="black" value="clip">Clip</option>
+          <option class="black" value="drop">Drop</option>
+          <option class="black" value="explode">Explode</option>
+          <option class="black" value="fade">Fade</option>
+          <option class="black" value="fold">Fold</option>
+          <option class="black" value="highlight">Highlight</option>
+          <option class="black" value="puff">Puff</option>
+          <option class="black" value="pulsate">Pulsate</option>
+        </select>
+
+        <button id="button" class="ui-state-default ui-corner-all">
+          Run Effect
+        </button>
+
+        <p>
+          <a href="#" title="That's what this widget is">Tooltips</a> can be
+          attached to any element. When you hover the element with your mouse,
+          the title attribute is displayed in a little box next to the element,
+          just like a native tooltip.
+        </p>
+        <p>
+          But as it&apos;s not a native tooltip, it can be styled. Any themes
+          built with
+          <a
+            href="http://jqueryui.com/themeroller/"
+            title="ThemeRoller: jQuery UI's theme builder application"
+            >ThemeRoller</a
+          >
+          will also style tooltips accordingly.
+        </p>
+        <p>
+          Tooltips are also useful for form elements, to show some additional
+          information in the context of each field.
+        </p>
+        <p>
+          <label for="age">Your age:</label
+          ><input
+            id="age"
+            title="We ask for your age only for statistical purposes."
+          />
+        </p>
+        <p>Hover the field to see the tooltip.</p>
+      </section>
+
+      <section>
+        <div class="toggler">
+          <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all">Animate</h3>
+            <p>
+              Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed
+              pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit
+              vitae, mi.
+            </p>
+          </div>
+        </div>
+        <button id="button" class="ui-state-default ui-corner-all">
+          Toggle Effect
+        </button>
+
+        <div class="toggler">
+          <div id="effect" class="newClass ui-corner-all">
+            Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed
+            pede.
+          </div>
+        </div>
+        <button id="button" class="ui-state-default ui-corner-all">
+          Run Effect
+        </button>
+
+        <div class="toggler">
+          <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all">Toggle</h3>
+            <p>
+              Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed
+              pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit
+              vitae, mi.
+            </p>
+          </div>
+        </div>
+
+        <select name="effects" id="effectTypes">
+          <option value="blind">Blind</option>
+          <option value="bounce">Bounce</option>
+          <option value="clip">Clip</option>
+          <option value="drop">Drop</option>
+          <option value="explode">Explode</option>
+          <option value="fade">Fade</option>
+          <option value="fold">Fold</option>
+          <option value="highlight">Highlight</option>
+          <option value="puff">Puff</option>
+         
+        </select>
+
+        <button id="button" class="ui-state-default ui-corner-all">
+          Run Effect
+        </button>
+      </section>
+
+      <section>
+        <ol id="selectable">
+          <li class="ui-widget-content">Item 1</li>
+          <li class="ui-widget-content">Item 2</li>
+          <li class="ui-widget-content">Item 3</li>
+          <li class="ui-widget-content">Item 4</li>
+          <li class="ui-widget-content">Item 5</li>
+          <li class="ui-widget-content">Item 6</li>
+          <li class="ui-widget-content">Item 7</li>
+        </ol>
+      </section>
+    </main>
+
+    <script>
+      $(function () {
+        let names = [
+          "Sadiq",
+          "Kashif",
+          "Maryam",
+          "Zaineb",
+          "Mustafa",
+          "Muheeb",
+          "Bisma",
+          "Hania",
+          "Umaima",
+          "salma",
+          "faixa",
+        ];
+        $("#auto").autocomplete({
+          source: names,
+        });
+      });
+
+      $(function () {
+        $("#progressbar").progressbar({
+          value: 80,
+        });
+      });
+
+      $(function () {
+        $("input").checkboxradio();
+      });
+
+      $(function () {
+        $("#slider").slider();
+      });
+
+      $(".slider").slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ],
+      });
+
+      $(function () {
+        let spinner = $("#spinner").spinner();
+
+        $("#disable").on("click", function () {
+          if (spinner.spinner("option", "disabled")) {
+            spinner.spinner("enable");
+          } else {
+            spinner.spinner("disable");
+          }
+        });
+        $("#destroy").on("click", function () {
+          if (spinner.spinner("instance")) {
+            spinner.spinner("destroy");
+          } else {
+            spinner.spinner();
+          }
+        });
+        $("#getvalue").on("click", function () {
+          alert(spinner.spinner("value"));
+        });
+        $("#setvalue").on("click", function () {
+          spinner.spinner("value", 5);
+        });
+
+        $("button").button();
+      });
+
+      $(function () {
+        $("#menu").menu();
+      });
+
+      $(function () {
+        $("#tabs").tabs();
+      });
+
+      $(function () {
+        $("#dialog").dialog();
+      });
+
+      $(function () {
+        $(".controlgroup").controlgroup();
+        $(".controlgroup-vertical").controlgroup({
+          direction: "vertical",
+        });
+      });
+
+      $(function () {
+        $("#accordion").accordion();
+      });
+
+      $(function () {
+        $("#datepicker").datepicker();
+      });
+
+      $(function () {
+        $("#draggable").draggable();
+      });
+
+      $(function () {
+        $("#sortable").sortable();
+      });
+
+      $(function () {
+        $("#draggable").draggable();
+        $("#droppable").droppable({
+          drop: function (event, ui) {
+            $(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+          },
+        });
+      });
+      $(function () {
+        $("#resizable").resizable();
+      });
+
+      $(function () {
+        if (!$("<canvas>")[0].getContext) {
+          $("<div>")
+            .text(
+              "Your browser doesn't support canvas, which is required for this demo."
+            )
+            .appendTo("#graphs");
+          return;
+        }
+
+        var i = 0,
+          width = 100,
+          height = 100;
+
+        $.each($.easing, function (name, impl) {
+          var graph = $("<div>").addClass("graph").appendTo("#graphs"),
+            text = $("<div>")
+              .text(++i + ". " + name)
+              .appendTo(graph),
+            wrap = $("<div>").appendTo(graph).css("overflow", "hidden"),
+            canvas = $("<canvas>").appendTo(wrap)[0];
+
+          canvas.width = width;
+          canvas.height = height;
+          var drawHeight = height * 0.8,
+            cradius = 10,
+            ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#fff";
+
+          // Draw background
+          ctx.beginPath();
+          ctx.moveTo(cradius, 0);
+          ctx.quadraticCurveTo(0, 0, 0, cradius);
+          ctx.lineTo(0, height - cradius);
+          ctx.quadraticCurveTo(0, height, cradius, height);
+          ctx.lineTo(width - cradius, height);
+          ctx.quadraticCurveTo(width, height, width, height - cradius);
+          ctx.lineTo(width, 0);
+          ctx.lineTo(cradius, 0);
+          ctx.fill();
+
+          // Draw bottom line
+          ctx.strokeStyle = "#555";
+          ctx.beginPath();
+          ctx.moveTo(width * 0.1, drawHeight + 0.5);
+          ctx.lineTo(width * 0.9, drawHeight + 0.5);
+          ctx.stroke();
+
+          // Draw top line
+          ctx.strokeStyle = "#555";
+          ctx.beginPath();
+          ctx.moveTo(width * 0.1, drawHeight * 0.3 - 0.5);
+          ctx.lineTo(width * 0.9, drawHeight * 0.3 - 0.5);
+          ctx.stroke();
+
+          // Plot easing
+          ctx.strokeStyle = "white";
+          ctx.beginPath();
+          ctx.lineWidth = 2;
+          ctx.moveTo(width * 0.1, drawHeight);
+          $.each(new Array(width), function (position) {
+            var state = position / width,
+              val = impl(state, position, 0, 1, width);
+            ctx.lineTo(
+              position * 0.8 + width * 0.1,
+              drawHeight - drawHeight * val * 0.7
+            );
+          });
+          ctx.stroke();
+
+          // Animate on click
+          graph.on("click", function () {
+            wrap
+              .animate({ height: "hide" }, 2000, name)
+              .delay(800)
+              .animate({ height: "show" }, 2000, name);
+          });
+
+          graph.width(width).height(height + text.height() + 10);
+        });
+      });
+
+      $(function () {
+        // run the currently selected effect
+        function runEffect() {
+          // get effect type from
+          var selectedEffect = $("#effectTypes").val();
+
+          // Most effect types need no options passed by default
+          var options = {};
+          // some effects have required parameters
+          if (selectedEffect === "scale") {
+            options = { percent: 50 };
+          } else if (selectedEffect === "transfer") {
+            options = { to: "#button", className: "ui-effects-transfer" };
+          } else if (selectedEffect === "size") {
+            options = { to: { width: 200, height: 60 } };
+          }
+
+          // Run the effect
+          $("#effect").effect(selectedEffect, options, 500, callback);
+        }
+
+        // Callback function to bring a hidden box back
+        function callback() {
+          setTimeout(function () {
+            $("#effect").removeAttr("style").hide().fadeIn();
+          }, 1000);
+        }
+
+        // Set effect from select menu value
+        $("#button").on("click", function () {
+          runEffect();
+          return false;
+        });
+      });
+
+      $(function () {
+        $(document).tooltip();
+      });
+
+      $(function () {
+        var state = true;
+        $("#button").on("click", function () {
+          if (state) {
+            $("#effect").animate(
+              {
+                backgroundColor: "#aa0000",
+                color: "#fff",
+                width: 500,
+              },
+              1000
+            );
+          } else {
+            $("#effect").animate(
+              {
+                backgroundColor: "#fff",
+                color: "#000",
+                width: 240,
+              },
+              1000
+            );
+          }
+          state = !state;
+        });
+      });
+
+      $(function () {
+        $("#button").on("click", function () {
+          $(".newClass").switchClass("newClass", "anotherNewClass", 1000);
+          $(".anotherNewClass").switchClass(
+            "anotherNewClass",
+            "newClass",
+            1000
+          );
+        });
+      });
+
+      $(function () {
+        // run the currently selected effect
+        function runEffect() {
+          // get effect type from
+          var selectedEffect = $("#effectTypes").val();
+
+          // Most effect types need no options passed by default
+          var options = {};
+          // some effects have required parameters
+          if (selectedEffect === "scale") {
+            options = { percent: 50 };
+          } else if (selectedEffect === "size") {
+            options = { to: { width: 200, height: 60 } };
+          }
+
+        
+          $("#effect").toggle(selectedEffect, options, 500);
+        }
+
+        $("#button").on("click", function () {
+          runEffect();
+        });
+      });
+
+      $(function () {
+        $("#selectable").selectable();
+      });
+    </script>
+  </body>
+</html>

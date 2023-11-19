@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-container {
+            background-image: url('https://graffitiwallpaper.com/pics/listings/373_landscape.jpg');
+            background-size: cover;
+            padding: 100px;
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        input[type="text"],input[type="password"], select, textarea {
+        
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #1c1515;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: rgb(231, 177, 10);
+            padding: 10px 20px;
+            border: none;
+            color: #0c0c0c;
+            border-radius: 18px;
+            margin: 10px;
+            cursor: pointer;
+            box-shadow: #0c0c0c;
+            text-decoration: none;
+        }
+
+        button:hover {
+            background-color: rgb(199, 0, 57);
+        }
+        h2{
+            font-family: Verdana, Geneva, Tahoma;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2> Quickform</h2>
+        <form id="myForm">
+            <input type="text" placeholder="Name" id="name">
+            <input type="text" placeholder="Email" id="email">
+            <input type="password" placeholder="Password" id="password">
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <textarea name="Message" id="message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myForm').css('margin-top', '30px');
+            $('#name').css('font-weight', 'bold');
+            $('select').css('background-color', 'green');
+            $('input[type="text"]').css('border-color', 'rgb(51, 187, 197)');
+            $('#password').css('background-color','rgb(210, 222, 50)')
+
+            $('#myForm').submit(function (event) {
+                event.preventDefault();
+
+
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var gender = $('#gender').val();
+                var message = $('#message').val();
+                alert('Name: ' + name + '\nEmail: ' + email + '\nGender: ' + gender + '\nMessage: ' + message);
+
+
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

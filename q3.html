@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+      integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+      integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style-type: none;
+      }
+      body {
+        background-color: #f8f5f2;
+        scroll-behavior: smooth;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 2vmax;
+        width: 100%;
+        height: 10vh;
+      }
+      #logo {
+        color: #232323;
+        font-size: 2vmax;
+      }
+      nav > ul {
+        display: flex;
+        gap: 2vmax;
+      }
+      nav > ul > li > a {
+        color: #232323;
+        color: 232323;
+        transition: all 0.3s;
+        height: 5vmin;
+        display: flex;
+        font-size: 1.1vmax;
+        align-items: center;
+      }
+      nav > ul > li > a:hover {
+        border-bottom: 1px solid #000;
+      }
+      main {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      form {
+        width: 60vmax;
+        height: 60vmin;
+        background-color: #3737e6;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 2vmin 0;
+      }
+      .row {
+        width: 100%;
+        height: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .col {
+        width: 20%;
+        height: 100%;
+        /* border: 1px solid #eee; */
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+      }
+      .inp {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      h2 {
+        color: #fff;
+      }
+      label {
+        color: #fff;
+      }
+      input {
+        border: none;
+        padding: 0.7vmin 0.7vmax;
+        border-radius: 4px;
+        text-align: center;
+      }
+      #last {
+        /* flex-direction: row; */
+        /* align-items: flex-end; */
+        padding-bottom: 3vh;
+      }
+
+      #last > span {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      #last > input {
+        background-color: #ff8ba7;
+        color: #33272a;
+        padding: 1vmin 2vmax;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        border: none;
+      }
+      #last > span > span {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="logo">Marksheet</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+    <main>
+      <form action="">
+        <h2>Marksheet</h2>
+        <div class="row">
+          <div class="col">
+            <div class="inp">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                onkeyup="name_vali()"
+                placeholder="Enter your name:"
+              />
+              <span id="error"></span>
+            </div>
+
+            <div class="inp">
+              <label for="ID">Student ID:</label>
+              <input
+                type="number"
+                id="ID"
+                onkeyup="id_vali()"
+                placeholder="Enter your ID:"
+              />
+              <span id="error1"></span>
+            </div>
+
+            <div class="inp">
+              <label for="school">School Name:</label>
+              <input
+                type="text"
+                id="school"
+                onkeyup="school_vali()"
+                placeholder="Enter your School Name:"
+              />
+              <span id="error2"></span>
+            </div>
+
+            <div class="inp">
+              <label for="class">Class:</label>
+              <input
+                type="number"
+                id="class"
+                onkeyup="class_vali()"
+                placeholder="Enter your Class:"
+              />
+              <span id="error3"></span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="inp">
+              <label for="english">English:</label>
+              <input
+                type="number"
+                placeholder="Enter your English Marks"
+                id="engMakrs"
+                onkeyup="english()"
+              />
+              <span id="error4"></span>
+            </div>
+
+            <div class="inp">
+              <label for="science">Science:</label>
+              <input
+                type="number"
+                placeholder="Enter your Science Marks"
+                id="scienceMarks"
+                onkeyup="science()"
+              />
+              <span id="error5"></span>
+            </div>
+
+            <div class="inp">
+              <label for="urdu">Urdu:</label>
+              <input
+                type="number"
+                placeholder="Enter your Urdu Marks"
+                id="urduMarks"
+                onkeyup="urdu()"
+              />
+              <span id="error6"></span>
+            </div>
+
+            <div class="inp">
+              <label for="Math">Math:</label>
+              <input
+                type="number"
+                placeholder="Enter your Math Marks"
+                id="mathMarks"
+                onkeyup="math()"
+              />
+              <span id="error7"></span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="inp">
+              <label for="history">History:</label>
+              <input
+                type="number"
+                placeholder="Enter your History Marks"
+                id="historyMarks"
+                onkeyup="history()"
+              />
+              <span id="error8"></span>
+            </div>
+
+            <div class="inp">
+              <label for="Physics">Physics:</label>
+              <input
+                type="number"
+                placeholder="Enter your Physics Marks"
+                id="PhysicsMarks"
+                onkeyup="Physics()"
+              />
+              <span id="error9"></span>
+            </div>
+
+            <div class="inp">
+              <label for="Arts">Arts:</label>
+              <input
+                type="number"
+                placeholder="Enter your Arts Marks"
+                id="ArtsMarks"
+                onkeyup="Arts()"
+              />
+              <span id="error10"></span>
+            </div>
+
+            <div class="inp">
+              <label for="Music">Music:</label>
+              <input
+                type="number"
+                placeholder="Enter your Music Marks"
+                id="MusicMarks"
+                onkeyup="Music()"
+              />
+              <span id="error11"></span>
+            </div>
+          </div>
+          <div class="col" id="last">
+            <span id="total"
+              >Total:
+              <span id="totalMark"></span>
+            </span>
+            <span id="percentage"
+              >Percentage:
+              <span id="percentageMark"></span>
+            </span>
+            <span id="Grade"
+              >Grade:
+              <span id="grademark"></span>
+            </span>
+            <input type="submit" value="Submit" />
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <script>
+      let name_vali = () => {
+        let name = $("#name").val();
+        let error = $("#error");
+        let name_vali = /^[a-zA-Z]{3,15}$/;
+
+        if (name === "") {
+          error.css("color", "#ff0000");
+          error.text("Please enter your name:");
+          return false;
+        } else if (name_vali.exec()) {
+          error.css("color", "white");
+          error.text("Good");
+          return true;
+        } else {
+          error.css("color", "#ff0000");
+          error.text("Please enter your name:");
+          return false;
+        }
+      };
+
+      let id_vali = () => {
+        let id = $("#ID").val();
+        let error1 = $("#error1");
+
+        if (id == "") {
+          error1.css("color", "red");
+          error1.text("Please enter your STD-ID");
+          return false;
+        } else if (isNaN(id)) {
+          error1.css("color", "red");
+          error1.text("Please enter your STD-ID");
+          return false;
+        } else if (id < 0) {
+          error1.css("color", "red");
+          error1.text("Please enter your STD-ID");
+          return false;
+        } else {
+          error1.css("color", "#fff");
+          error1.text("Good");
+          return true;
+        }
+      };
+
+      let school_vali = () => {
+        let school = $("#school").val();
+        let error2 = $("#error2");
+        let school_vali = /^[a-zA-Z0-9.-_ ]{5,25}$/;
+
+        if (school === "") {
+          error2.css("color", "#ff0000");
+          error2.text("Enter your School name:");
+          return false;
+        } else if (school_vali.exec(school)) {
+          error2.css("color", "#fff");
+          error2.text("Good");
+          return true;
+        }
+      };
+
+      let class_vali = () => {
+        let grade = $("#class").val();
+        let error3 = $("#error3");
+
+        if (grade === "") {
+          error3.css("color", "red");
+          error3.text("Enter you Class name:");
+          return false;
+        } else if (isNaN(grade)) {
+          error3.css("color", "red");
+          error3.text("Enter Valid Class name:");
+          return false;
+        } else {
+          error3.css("color", "#fff");
+          error3.text("Good:");
+          return true;
+        }
+      };
+
+      let english = () => {
+        let eng = $("#engMakrs").val();
+        let error4 = $("#error4");
+
+        if (eng === "") {
+          error4.css("color", "red");
+          error4.text("Enter you English Marks:");
+          return false;
+        } else if (isNaN(eng) || eng < 0 || eng > 100) {
+          error4.css("color", "red");
+          error4.text("Enter Valid English Marks:");
+          return false;
+        } else {
+          error4.css("color", "#fff");
+          error4.text("Good");
+          return true;
+        }
+      };
+
+      let science = () => {
+        let sci = $("#scienceMarks").val();
+        let error5 = $("#error5");
+
+        if (sci === "") {
+          error5.css("color", "red");
+          error5.text("Enter you Science Marks:");
+          return false;
+        } else if (isNaN(sci) || sci < 0 || sci > 100) {
+          error5.css("color", "red");
+          error5.text("Enter Valid Science Marks:");
+          return false;
+        } else {
+          error5.css("color", "#fff");
+          error5.text("Good");
+          return true;
+        }
+      };
+
+      let urdu = () => {
+        let urdu = $("#urduMarks").val();
+        let error6 = $("#error6");
+
+        if (urdu === "") {
+          error6.css("color", "red");
+          error6.text("Enter you Urdu Marks:");
+          return false;
+        } else if (isNaN(urdu) || urdu < 0 || urdu > 100) {
+          error6.css("color", "red");
+          error6.text("Enter Valid Urdu Marks:");
+          return false;
+        } else {
+          error6.css("color", "#fff");
+          error6.text("Good");
+          return true;
+        }
+      };
+
+      let math = () => {
+        let Math = $("#mathMarks").val();
+        let error7 = $("#error7");
+
+        if (Math === "") {
+          error7.css("color", "red");
+          error7.text("Enter you Math Marks:");
+          return false;
+        } else if (isNaN(Math) || Math < 0 || Math > 100) {
+          error7.css("color", "red");
+          error7.text("Enter Valid Math Marks:");
+          return false;
+        } else {
+          error7.css("color", "#fff");
+          error7.text("Good");
+          return true;
+        }
+      };
+
+      let history = () => {
+        let history = $("#historyMarks").val();
+        let error8 = $("#error8");
+
+        if (history === "") {
+          error8.css("color", "red");
+          error8.text("Enter you History Marks:");
+          return false;
+        } else if (isNaN(history) || history < 0 || history > 100) {
+          error8.css("color", "red");
+          error8.text("Enter Valid History Marks:");
+          return false;
+        } else {
+          error8.css("color", "#fff");
+          error8.text("Good");
+          return true;
+        }
+      };
+
+      let Physics = () => {
+        let physics = $("#PhysicsMarks").val();
+        let error9 = $("#error9");
+
+        if (physics === "") {
+          error9.css("color", "red");
+          error9.text("Enter you Physics Marks:");
+          return false;
+        } else if (isNaN(physics) || physics < 0 || physics > 100) {
+          error9.css("color", "red");
+          error9.text("Enter Valid Physics Marks:");
+          return false;
+        } else {
+          error9.css("color", "#fff");
+          error9.text("Good");
+          return true;
+        }
+      };
+
+      let Arts = () => {
+        let Arts = $("#ArtsMarks").val();
+        let error10 = $("#error10");
+
+        if (Arts === "") {
+          error10.css("color", "red");
+          error10.text("Enter you Arts Marks:");
+          return false;
+        } else if (isNaN(Arts) || Arts < 0 || Arts > 100) {
+          error10.css("color", "red");
+          error10.text("Enter Valid Arts Marks:");
+          return false;
+        } else {
+          error10.css("color", "#fff");
+          error10.text("Good");
+          return true;
+        }
+      };
+
+      let Music = () => {
+        let Music = $("#MusicMarks").val();
+        let error10 = $("#error11");
+
+        if (Music === "") {
+          error10.css("color", "red");
+          error10.text("Enter you Music Marks:");
+          return false;
+        } else if (isNaN(Music) || Music < 0 || Music > 100) {
+          error10.css("color", "red");
+          error10.text("Enter Valid Music Marks:");
+          return false;
+        } else {
+          error10.css("color", "#fff");
+          error10.text("Good");
+          return true;
+        }
+      };
+
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (
+          name_vali() &&
+          id_vali() &&
+          school_vali() &&
+          class_vali() &&
+          english() &&
+          science() &&
+          urdu() &&
+          math() &&
+          history() &&
+          Physics() &&
+          Arts() &&
+          Music()
+        ) {
+          Swal.fire("Submit", "Form has been submit", "success");
+          let english = Number($("#engMakrs").val());
+          let science = Number($("#scienceMarks").val());
+          let urdu = Number($("#urduMarks").val());
+          let math = Number($("#mathMarks").val());
+          let history = Number($("#historyMarks").val());
+          let physics = Number($("#PhysicsMarks").val());
+          let Arts = Number($("#ArtsMarks").val());
+          let Music = Number($("#MusicMarks").val());
+
+          let total = $("#totalMark");
+          let percentage = $("#percentageMark");
+
+          total.text(
+            english + science + urdu + math + history + physics + Arts + Music
+          );
+          let percent =
+            ((english +
+              science +
+              urdu +
+              math +
+              history +
+              physics +
+              Arts +
+              Music) /
+              800) *
+            100;
+          percentage.text(`${percent.toFixed(2)}%`);
+
+          switch (true) {
+            case percent >= 80 && percent <= 100:
+              $("#grademark").text("A+");
+              break;
+            case percent >= 70 && percent <= 79:
+              $("#grademark").text("A");
+              break;
+            case percent >= 60 && percent <= 69:
+              $("#grademark").text("AB");
+              break;
+            case percent >= 50 && percent <= 59:
+              $("#grademark").text("B");
+              break;
+            case percent >= 40 && percent <= 49:
+              $("#grademark").text("C");
+              break;
+            case percent >= 32 && percent <= 9:
+              $("#grademark").text("D");
+              break;
+            default:
+              $("#grademark").text("F");
+              break;
+          }
+        } else {
+          Swal.fire("Error", "Recheck The information you enter", "error");
+        }
+      });
+    </script>
+  </body>
+</html>
